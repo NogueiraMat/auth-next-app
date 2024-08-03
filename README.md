@@ -19,4 +19,4 @@ Este projeto demonstra como integrar a autenticação JWT (JSON Web Token) com u
 1. **Clone o repositório**
 
    ```bash
-   git clone https://github.com/usuario/repositorio.git
+   git clone https://github.com/NogueiraMat/auth-next-app
