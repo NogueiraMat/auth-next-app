@@ -20,3 +20,12 @@ Este projeto demonstra como integrar a autenticação JWT (JSON Web Token) com u
 
    ```bash
    git clone https://github.com/NogueiraMat/auth-next-app
+
+2. **Backend**
+   - Desenvolva uma API com um endpoint de autentição que define um cookie JWT httponly e um endpoint que retorna as informações do usuário logado;
+
+3. **Auth Provider**
+   - Modifique as funções de chamada na API encontradas no diretório context/AuthContenxt.tsx para os endpoints da sua API;
+
+4. **Iniciar**
+   - Inicie a aplicação Next com o comando: npm run dev
