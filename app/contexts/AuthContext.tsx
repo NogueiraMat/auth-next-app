@@ -1,13 +1,26 @@
 'use client'
+import { useState, createContext, ReactNode } from "react";
 
-import { useState, createContext } from "react";
 
-export const AuthContext = createContext(null);
+interface AuthContextProps {
+    isAuthenticate: boolean;
+    user: any;
+    login: (username: string, password: string) => Promise<Response>;
+    logout: () => Promise<any>;
+    checkAuth: () => Promise<void>;
+}
 
-const AuthProvider = ({ children }) => {
+interface AuthProviderProps {
+    children: ReactNode;
+}
+
+export const AuthContext = createContext<AuthContextProps | null>(null);
+
+const AuthProvider = ({ children }: AuthProviderProps) => {
     const [isAuthenticate, setIsAuthenticate] = useState(false);
     const [user, setUser] = useState(null);
 
+    // função que retorna os dados do usuário caso o token enviado para a requisição seja válido
     const checkAuth = async () => {
         try {
             const response = await fetch("http://localhost:5000/api/user/me", {
@@ -29,6 +42,7 @@ const AuthProvider = ({ children }) => {
         }
     }
     
+    // função que realiza o login na aplicação e retorna um token httponly
     const login = async (username: string, password: string) => {
         try {
             const response = await fetch("http://localhost:5000/public/user/auth", {
@@ -54,6 +68,7 @@ const AuthProvider = ({ children }) => {
         }
     }    
 
+    // função que raliza logout, expirando e retirando o token httponly
     const logout = async () => {
         try {
             const response = await fetch("http://localhost:5000/public/user/logout", {
